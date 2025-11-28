@@ -1,9 +1,9 @@
+
 'use client'
 
 import { useRef, useMemo, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { useRouter } from 'next/navigation'
 
 const STAR_COUNT = 3000
 
@@ -80,7 +80,6 @@ function StarField({ speedRef, opacityRef }) {
 }
 
 export default function TunnelAnimation({ isActive }) {
-  const router = useRouter()
   const speedRef = useRef(0)
   const opacityRef = useRef(0)
   const [flash, setFlash] = useState(0)
@@ -117,14 +116,14 @@ export default function TunnelAnimation({ isActive }) {
       }
       else if (elapsed >= 1800) {
         clearInterval(interval)
-        //  deployed app URL
-        window.location.href = 'https://suvidha-text-summarizer.vercel.app/'
-        
+        if (typeof window !== 'undefined') {
+          window.location.href = 'https://suvidha-text-summarizer.vercel.app/'
+        }
       }
     }, 16)
 
     return () => clearInterval(interval)
-  }, [isActive, router])
+  }, [isActive])
 
   if (!isActive) return null
 

@@ -53,7 +53,7 @@ export default function ZigZagSection() {
         return (
           <div
             key={index}
-            ref={(el) => (itemRefs.current[index] = el)}
+            ref={(el) => { itemRefs.current[index] = el }}
             data-index={index}
             style={{
               display: 'grid',
