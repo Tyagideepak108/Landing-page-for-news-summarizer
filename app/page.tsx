@@ -66,8 +66,10 @@ export default function Home() {
           >
           </div>
           
-          {/* Footer at the very end */}
-          <Footer />
+          {/* Footer */}
+          <div style={{ position: 'relative', zIndex: 100 }}>
+            <Footer />
+          </div>
         </>
       )}
       
