@@ -9,7 +9,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [focusedField, setFocusedField] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
-  const globeRef = useRef(null);
+  const globeRef = useRef<HTMLDivElement>(null);
 
   const faqs = [
     { q: 'Is it free?', a: 'Yes! Our basic plan is completely free with up to 10 summaries per day.' },
