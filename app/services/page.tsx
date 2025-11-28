@@ -154,7 +154,7 @@ export default function Services() {
                   return (
                     <div
                       key={index}
-                      ref={el => cardsRef.current[index] = el}
+                      ref={el => { cardsRef.current[index] = el; }}
                       data-index={index}
                       className="bg-gray-800 bg-opacity-80 backdrop-blur-lg border border-gray-600 rounded-xl p-8 min-h-80 flex flex-col items-center text-center cursor-pointer transition-all duration-500 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 hover:-translate-y-2"
                       style={{
