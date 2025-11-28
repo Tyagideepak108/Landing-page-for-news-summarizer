@@ -1,0 +1,95 @@
+/* State A: Normal View - Page fully visible */
+.page-normal {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+/* State B: Exit Style - Page leaving (fold out) */
+.page-exit {
+  opacity: 0;
+  transform: scale(0.95) rotateY(-2deg);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+/* State C: Entry Style - Page entering (fold in) */
+.page-enter {
+  opacity: 0;
+  transform: scale(0.95) rotateY(2deg);
+  min-height: 100vh;
+}
+
+/* Transition to normal after entry */
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+/* Legacy support for existing transition */
+.page-transition {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+}
+
+.page-transition.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Newspaper fold effect keyframes */
+@keyframes newspaperFoldOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95) rotateY(-2deg);
+  }
+}
+
+@keyframes newspaperFoldIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) rotateY(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/* Animation classes */
+.fold-out {
+  animation: newspaperFoldOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fold-in {
+  animation: newspaperFoldIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Body level transitions */
+body.fold-out {
+  opacity: 0;
+  transform: scale(0.95) rotateY(-2deg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.fold-in {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active link styling */
+.nav-link.active {
+  color: #00CED1;
+  background: rgba(0, 206, 209, 0.15);
+  border: 1px solid rgba(0, 206, 209, 0.4);
+}

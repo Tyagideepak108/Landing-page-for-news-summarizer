@@ -1,0 +1,42 @@
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00CED1, #FFFFFF);
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(0, 206, 209, 0.6);
+}
+
+.scroll-percentage {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(42, 42, 42, 0.8);
+  color: #00CED1;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 206, 209, 0.4);
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .scroll-percentage {
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

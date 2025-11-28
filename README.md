@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 NewsSummarizer - 3D Landing Page
 
-## Getting Started
+A stunning 3D interactive landing page built with Next.js, Three.js, and GSAP animations.
 
-First, run the development server:
+## ✨ Features
+
+- 🎨 **Cinematic 3D Scene** - Interactive 3D woman reading newspaper with smooth animations
+- 🌀 **Tunnel Animation** - Immersive tunnel effect on "Get Started" button click
+- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
+- 🎭 **Smooth Transitions** - Page transitions with GSAP animations
+- 🎯 **Modern UI/UX** - Clean design with glassmorphism effects
+- ⚡ **Performance Optimized** - Built with Next.js 15 for optimal performance
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 15
+- **3D Graphics:** Three.js, React Three Fiber
+- **Animations:** GSAP, Framer Motion
+- **Styling:** CSS3, Tailwind CSS
+- **Language:** TypeScript, JavaScript
+
+## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+
+# Navigate to project directory
+cd cinematic-frontend
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Create production build
+npm run build
 
-## Learn More
+# Start production server
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+cinematic-frontend/
+├── app/                    # Next.js app directory
+│   ├── about/             # About page
+│   ├── services/          # Services page
+│   ├── contact/           # Contact page
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── Navigation.tsx     # Navigation bar
+│   ├── Footer.tsx         # Footer component
+│   ├── HeroScene.js       # Main 3D scene
+│   ├── TunnelAnimation.tsx # Tunnel effect
+│   └── ...
+├── public/                # Static assets
+│   └── models/           # 3D models (.glb files)
+└── styles/               # Global styles
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎮 Key Components
 
-## Deploy on Vercel
+- **HeroScene** - Main 3D scene with woman, chair, and newspaper
+- **TunnelAnimation** - Immersive tunnel effect
+- **Navigation** - Responsive navigation with mobile menu
+- **Footer** - Professional footer with "Powered by PRL"
+- **PageTransition** - Smooth page transitions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Home** - 3D interactive landing page
+- **About** - Information about NewsSummarizer
+- **Services** - Features and capabilities
+- **Contact** - Contact form and FAQ
+
+## 🔧 Configuration
+
+The project uses:
+- Next.js 15 with App Router
+- TypeScript for type safety
+- ESLint for code quality
+- PostCSS for CSS processing
+
+## 📝 License
+
+All rights reserved © 2024 NewsSummarizer
+
+## 💡 Powered by PRL
+
+---
+
+Made with ❤️ using Next.js and Three.js

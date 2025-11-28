@@ -1,0 +1,36 @@
+.get-started-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  padding: 1.5rem 4rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: #00CED1;
+  border: 2px solid #00CED1;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease;
+}
+
+.get-started-btn:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  background: #008B8B;
+  border-color: #008B8B;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

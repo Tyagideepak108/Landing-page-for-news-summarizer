@@ -1,26 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Lora:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+@import "../components/PageTransition.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-tertiary: #FAFAFA;
+  --text-primary: #2A2A2A;
+  --text-secondary: #6B7280;
+  --accent: #00CED1;
+  --accent-hover: #008B8B;
+  --border-color: #E5E7EB;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #00CED1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #2A2A2A;
+  --bg-tertiary: #0A0A0A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
+  --accent: #00CED1;
+  --accent-hover: #008B8B;
+  --border-color: #374151;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #00CED1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lora', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  font-family: 'Lora', serif;
+  overflow-x: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.home-page {
+  background: url('/models/background4.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+[data-theme="light"] body.home-page {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] body.home-page::before {
+  opacity: 0.3;
+}
+
+body.home-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('/models/background4.png') no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+
+
+body.tunnel-active::before {
+  opacity: 0;
+}
+
+body.tunnel-active {
+  background: var(--bg-primary);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Specific Styles */
+[data-theme="light"] nav {
+  background: #FFFFFF;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+[data-theme="light"] nav a {
+  color: #111111;
+}
+
+[data-theme="light"] nav a:hover,
+[data-theme="light"] nav a.active {
+  color: #00CED1;
+  border-bottom-color: #00CED1;
+}
+
+[data-theme="light"] button.primary,
+[data-theme="light"] .btn-primary {
+  background: #00CED1;
+  color: #FFFFFF;
+}
+
+[data-theme="light"] button.primary:hover,
+[data-theme="light"] .btn-primary:hover {
+  background: #008B8B;
+}
+
+[data-theme="light"] button.secondary,
+[data-theme="light"] .btn-secondary {
+  background: transparent;
+  color: #00CED1;
+  border: 1px solid #00CED1;
+}
+
+[data-theme="light"] button.secondary:hover,
+[data-theme="light"] .btn-secondary:hover {
+  background: rgba(0, 206, 209, 0.1);
+  color: #008B8B;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] p {
+  color: #111111;
+}
+
+[data-theme="light"] .subtext,
+[data-theme="light"] .date,
+[data-theme="light"] small {
+  color: #6B7280;
+}
+
+canvas {
+  height: 100vh !important;
+  width: 100vw !important;
+  background: transparent !important;
 }
