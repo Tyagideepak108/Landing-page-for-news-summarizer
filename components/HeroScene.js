@@ -1,6 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Environment } from '@react-three/drei' 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Woman from './Woman'
@@ -192,8 +191,9 @@ export default function HeroScene({ tunnelActive = false }) {
         position: [0, 1.5 * getScaleFactors().camera.y, 4 * getScaleFactors().camera.z], 
         fov: isMobile ? 40 : isTablet ? 45 : 35
       }}
-      dpr={isMobile ? [1, 1.5] : [1, 2]} // Optimize pixel ratio for mobile
-      performance={{ min: 0.5 }} // Performance optimization
+      dpr={[1, 1.5]}
+      performance={{ min: 0.5 }}
+      gl={{ antialias: false, powerPreference: 'high-performance' }}
       // Canvas ko screen pe chipka de (fixed position)
       style={{ 
         height: '100vh', 

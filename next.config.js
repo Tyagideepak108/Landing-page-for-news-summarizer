@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
-    // Optimize for production
     config.optimization = {
       ...config.optimization,
       minimize: true,
@@ -18,13 +17,14 @@ const nextConfig = {
     }
     return config
   },
-  // Enable compression
   compress: true,
-  // Optimize images
   images: {
     formats: ['image/webp'],
     minimumCacheTTL: 60,
   },
+  swcMinify: true,
+  reactStrictMode: true,
+  poweredByHeader: false,
 }
 
 module.exports = nextConfig
