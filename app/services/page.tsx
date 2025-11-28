@@ -8,9 +8,9 @@ import Footer from '../../components/Footer';
 export default function Services() {
   const [counters, setCounters] = useState([0, 0, 0, 0]);
   const [isStatsVisible, setIsStatsVisible] = useState(false);
-  const [visibleCards, setVisibleCards] = useState([]);
-  const statsRef = useRef(null);
-  const cardsRef = useRef([]);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const statsRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const stats = [
     { target: 10000, suffix: '+', label: 'Articles Summarized' },
@@ -80,7 +80,7 @@ export default function Services() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = parseInt(entry.target.dataset.index);
+            const index = parseInt((entry.target as HTMLElement).dataset.index || '0');
             setTimeout(() => {
               setVisibleCards(prev => {
                 if (!prev.includes(index)) {
