@@ -173,7 +173,7 @@ export default function Contact() {
                         onFocus={() => setFocusedField('message')}
                         onBlur={() => setFocusedField('')}
                         placeholder="Your Message"
-                        rows="3"
+                        rows={3}
                         className="w-full bg-transparent text-white placeholder-gray-400 py-2 px-0 border-0 border-b border-gray-600 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none"
                         style={{ fontFamily: 'Poppins, sans-serif' }}
                         required
