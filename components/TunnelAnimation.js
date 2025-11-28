@@ -7,8 +7,8 @@ import { useRouter } from 'next/navigation'
 
 const STAR_COUNT = 3000
 
-function StarField({ speedRef, opacityRef }: { speedRef: React.MutableRefObject<number>, opacityRef: React.MutableRefObject<number> }) {
-  const mesh = useRef<THREE.InstancedMesh>(null)
+function StarField({ speedRef, opacityRef }) {
+  const mesh = useRef(null)
   const dummy = useMemo(() => new THREE.Object3D(), [])
 
   const particles = useMemo(() => {
@@ -25,13 +25,15 @@ function StarField({ speedRef, opacityRef }: { speedRef: React.MutableRefObject<
   useFrame((state) => {
     if (!mesh.current) return
 
-    const mat = mesh.current.material as THREE.MeshBasicMaterial
+    const mat = mesh.current.material
     mat.opacity = THREE.MathUtils.lerp(mat.opacity, opacityRef.current, 0.15)
 
     // FOV warp effect - smoother
     const targetFov = speedRef.current > 20 ? 110 : 70
-    state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, targetFov, 0.03)
-    state.camera.updateProjectionMatrix()
+    if (state.camera.fov !== undefined) {
+      state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, targetFov, 0.03)
+      state.camera.updateProjectionMatrix()
+    }
 
     // Camera shake at high speed - smoother
     if (speedRef.current > 30) {
@@ -60,7 +62,7 @@ function StarField({ speedRef, opacityRef }: { speedRef: React.MutableRefObject<
       dummy.scale.set(opacity, opacity, stretch)
       dummy.updateMatrix()
       
-      mesh.current!.setMatrixAt(i, dummy.matrix)
+      mesh.current.setMatrixAt(i, dummy.matrix)
     })
     mesh.current.instanceMatrix.needsUpdate = true
   })
@@ -77,7 +79,7 @@ function StarField({ speedRef, opacityRef }: { speedRef: React.MutableRefObject<
   )
 }
 
-export default function TunnelAnimation({ isActive }: { isActive: boolean }) {
+export default function TunnelAnimation({ isActive }) {
   const router = useRouter()
   const speedRef = useRef(0)
   const opacityRef = useRef(0)
@@ -88,11 +90,11 @@ export default function TunnelAnimation({ isActive }: { isActive: boolean }) {
 
     const startTime = Date.now()
 
-    const easeInOutQuart = (t: number) => {
+    const easeInOutQuart = (t) => {
       return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2
     }
 
-    const easeOutQuart = (t: number) => {
+    const easeOutQuart = (t) => {
       return 1 - Math.pow(1 - t, 4)
     }
 
