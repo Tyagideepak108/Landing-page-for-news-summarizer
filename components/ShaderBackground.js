@@ -63,7 +63,7 @@ const fragmentShader = `
 `
 
 export default function ShaderBackground() {
-  const meshRef = useRef<THREE.Mesh>(null)
+  const meshRef = useRef(null)
   
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
@@ -72,7 +72,7 @@ export default function ShaderBackground() {
 
   useFrame((state) => {
     if (meshRef.current) {
-      const material = meshRef.current.material as THREE.ShaderMaterial
+      const material = meshRef.current.material
       material.uniforms.uTime.value = state.clock.elapsedTime
       material.uniforms.uMouse.value.x = state.mouse.x
       material.uniforms.uMouse.value.y = state.mouse.y
