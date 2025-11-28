@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [focusedField, setFocusedField] = useState('');
-  const [openFaq, setOpenFaq] = useState(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const globeRef = useRef<HTMLDivElement>(null);
 
   const faqs = [
@@ -41,11 +41,11 @@ export default function Contact() {
     }
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert('Message sent! We\'ll get back to you soon.');
     setFormData({ name: '', email: '', message: '' });
