@@ -7,6 +7,7 @@ import './Navigation.css'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
 
@@ -24,13 +25,19 @@ const Navigation = () => {
 
 
   useEffect(() => {
-    // Only add entry animation for non-home pages
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
     if (pathname !== '/') {
       document.body.style.opacity = '1'
       document.body.style.transform = 'scale(1) rotateY(0deg)'
       document.body.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
     } else {
-      // Reset body styles for home page
       document.body.style.opacity = ''
       document.body.style.transform = ''
       document.body.style.transition = ''
@@ -38,7 +45,7 @@ const Navigation = () => {
   }, [pathname])
 
   return (
-    <nav className={`navbar ${isHomePage ? 'transparent' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <div className="nav-logo">
           <span className="logo-icon" style={{ fontSize: '2.2rem' }}>📰</span>

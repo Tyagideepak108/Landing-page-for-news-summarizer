@@ -190,7 +190,7 @@ export default function HeroScene({ tunnelActive = false }) {
       shadows
       camera={{ 
         position: [0, 1.5 * getScaleFactors().camera.y, 4 * getScaleFactors().camera.z], 
-        fov: isMobile ? 40 : isTablet ? 45 : 35
+        fov: isMobile ? 50 : isTablet ? 55 : 50
       }}
       dpr={[1, 1.5]}
       performance={{ min: 0.5 }}
@@ -309,20 +309,20 @@ export default function HeroScene({ tunnelActive = false }) {
         {/* Kursi */}
         <Chair scale={1.0} position={[0, -0.75, 0]} castShadow />
         
-        {/* Teri 'Woman' (correct position/scale ke saath, maine chheda nahi hai) */}
+        {/* Woman Model - Fixed position */}
         <Woman 
           scale={0.01} 
-          position={[-0.020000000000000004, -0.74, -0.12999999999999987]} 
-          rotation={[-0.009999999999999998, 1.41, 0.08000000000000013]}
+          position={[-0.02, -0.74, -0.13]} 
+          rotation={[-0.01, 1.41, 0.08]}
           castShadow
         />
         
-        {/* Ladki ke haath waala paper (jo ghayab hoga) */}
+        {/* Newspaper in hands - Larger scale to cover hands */}
         <group ref={staticPaperRef}>
           <Newspaper 
-            scale={0.347} 
-            position={[0.05, -0.05, 0.1]} 
-            rotation={[0.15, 1.5, -0.08]} 
+            scale={0.45} 
+            position={[0.03, -0.03, 0.12]} 
+            rotation={[0.12, 1.48, -0.06]} 
           />
         </group>
       </group>
