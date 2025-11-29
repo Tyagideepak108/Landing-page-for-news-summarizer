@@ -202,7 +202,7 @@ export default function HeroScene({ tunnelActive = false }) {
         position: 'fixed', 
         top: 0, 
         left: 0,
-        touchAction: 'none',
+        pointerEvents: 'none',
         zIndex: 10
       }}
     >
@@ -289,7 +289,7 @@ export default function HeroScene({ tunnelActive = false }) {
 
       
       {/* Ye group poore scene ko rakhta hai */}
-      <group ref={sceneRef} visible={!tunnelActive}>
+      <group ref={sceneRef} visible={!tunnelActive} onPointerDown={(e) => e.stopPropagation()}>
         {/* Simple Floor under chair - Deep Cyan & Gray Theme */}
         <mesh 
           position-y={-0.75} 
