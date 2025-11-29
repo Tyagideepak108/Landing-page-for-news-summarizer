@@ -61,8 +61,8 @@ export default function HeroText() {
           transition: 'all 0.3s ease',
           animation: 'pulse 2s infinite'
         }}
-        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+        onMouseEnter={(e) => (e.target as HTMLButtonElement).style.transform = 'scale(1.05)'}
+        onMouseLeave={(e) => (e.target as HTMLButtonElement).style.transform = 'scale(1)'}
         onClick={() => window.scrollTo({ top: document.body.scrollHeight * 0.8, behavior: 'smooth' })}
         >
           Try SnapNews Free →
