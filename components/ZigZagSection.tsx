@@ -45,7 +45,7 @@ export default function ZigZagSection() {
   }, [])
 
   return (
-    <div style={{ padding: '4rem 0', maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ padding: '2rem 1rem', maxWidth: '1200px', margin: '0 auto' }}>
       {content.map((item, index) => {
         const isEven = index % 2 === 0
         const isVisible = visibleItems.includes(index)
@@ -57,110 +57,61 @@ export default function ZigZagSection() {
             data-index={index}
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '4rem',
+              gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 1fr',
+              gap: window.innerWidth < 768 ? '2rem' : '4rem',
               alignItems: 'center',
-              marginBottom: index === content.length - 1 ? '0' : '6rem',
+              marginBottom: index === content.length - 1 ? '0' : (window.innerWidth < 768 ? '3rem' : '6rem'),
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
           >
-            {isEven ? (
-              <>
-                {/* Image Left */}
-                <div style={{
-                  overflow: 'hidden',
-                  borderRadius: '12px',
-                  transform: isVisible ? 'scale(1)' : 'scale(1.1)',
-                  transition: 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}>
-                  <img
-                    src={item.image}
-                    alt={item.heading}
-                    style={{
-                      width: '100%',
-                      height: '350px',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
-                  />
-                </div>
-                
-                {/* Text Right */}
-                <div style={{
-                  transform: isVisible ? 'translateX(0)' : 'translateX(60px)',
-                  opacity: isVisible ? 1 : 0,
-                  transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s'
-                }}>
-                  <h2 style={{
-                    fontFamily: 'Playfair Display, serif',
-                    fontSize: '2.8rem',
-                    color: '#00CED1',
-                    marginBottom: '1.5rem',
-                    lineHeight: '1.2'
-                  }}>
-                    {item.heading}
-                  </h2>
-                  <p style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    fontSize: '1.2rem',
-                    color: '#ffffff',
-                    lineHeight: '1.8',
-                    opacity: 0.9
-                  }}>
-                    {item.paragraph}
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Text Left */}
-                <div style={{
-                  transform: isVisible ? 'translateX(0)' : 'translateX(-60px)',
-                  opacity: isVisible ? 1 : 0,
-                  transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s'
-                }}>
-                  <h2 style={{
-                    fontFamily: 'Playfair Display, serif',
-                    fontSize: '2.8rem',
-                    color: '#00CED1',
-                    marginBottom: '1.5rem',
-                    lineHeight: '1.2'
-                  }}>
-                    {item.heading}
-                  </h2>
-                  <p style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    fontSize: '1.2rem',
-                    color: '#ffffff',
-                    lineHeight: '1.8',
-                    opacity: 0.9
-                  }}>
-                    {item.paragraph}
-                  </p>
-                </div>
-                
-                {/* Image Right */}
-                <div style={{
-                  overflow: 'hidden',
-                  borderRadius: '12px',
-                  transform: isVisible ? 'scale(1)' : 'scale(1.1)',
-                  transition: 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}>
-                  <img
-                    src={item.image}
-                    alt={item.heading}
-                    style={{
-                      width: '100%',
-                      height: '350px',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
-                  />
-                </div>
-              </>
-            )}
+            {/* Image */}
+            <div style={{
+              overflow: 'hidden',
+              borderRadius: '12px',
+              transform: isVisible ? 'scale(1)' : 'scale(1.1)',
+              transition: 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+              order: window.innerWidth < 768 ? 1 : (isEven ? 1 : 2)
+            }}>
+              <img
+                src={item.image}
+                alt={item.heading}
+                style={{
+                  width: '100%',
+                  height: window.innerWidth < 768 ? '250px' : '350px',
+                  objectFit: 'cover',
+                  borderRadius: '12px'
+                }}
+              />
+            </div>
+            
+            {/* Text */}
+            <div style={{
+              transform: isVisible ? 'translateX(0)' : (window.innerWidth < 768 ? 'translateY(20px)' : (isEven ? 'translateX(60px)' : 'translateX(-60px)')),
+              opacity: isVisible ? 1 : 0,
+              transition: 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s',
+              order: window.innerWidth < 768 ? 2 : (isEven ? 2 : 1)
+            }}>
+              <h2 style={{
+                fontFamily: 'Playfair Display, serif',
+                fontSize: window.innerWidth < 768 ? 'clamp(1.8rem, 5vw, 2.5rem)' : '2.8rem',
+                color: '#00CED1',
+                marginBottom: '1rem',
+                lineHeight: '1.2'
+              }}>
+                {item.heading}
+              </h2>
+              <p style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: window.innerWidth < 768 ? 'clamp(0.95rem, 2.5vw, 1.1rem)' : '1.2rem',
+                color: '#ffffff',
+                lineHeight: '1.8',
+                opacity: 0.9
+              }}>
+                {item.paragraph}
+              </p>
+            </div>
           </div>
         )
       })}
