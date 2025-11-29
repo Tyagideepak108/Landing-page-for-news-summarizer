@@ -48,16 +48,16 @@ export default function HeroScene({ tunnelActive = false }) {
   const getScaleFactors = () => {
     if (isMobile) {
       return {
-        scene: 0.7,
+        scene: 0.5,
         text: 0.6,
-        camera: { x: 0.8, y: 0.8, z: 1.2 },
+        camera: { x: 0.8, y: 1.2, z: 1.4 },
         movement: 0.5
       };
     } else if (isTablet) {
       return {
-        scene: 0.85,
+        scene: 0.75,
         text: 0.8,
-        camera: { x: 0.9, y: 0.9, z: 1.1 },
+        camera: { x: 0.9, y: 1.0, z: 1.2 },
         movement: 0.7
       };
     }
@@ -121,7 +121,8 @@ export default function HeroScene({ tunnelActive = false }) {
       // Slower model zoom out on scroll
       if (scrollY < windowHeight) {
         const scrollProgress = scrollY / windowHeight;
-        const zoomOutScale = 1.5 * (1 - scrollProgress * 0.3);
+        const baseScale = scales.scene * 1.5;
+        const zoomOutScale = baseScale * (1 - scrollProgress * 0.3);
         scene.scale.setScalar(zoomOutScale);
       }
       

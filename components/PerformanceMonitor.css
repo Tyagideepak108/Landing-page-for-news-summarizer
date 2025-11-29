@@ -1,0 +1,17 @@
+.fps-monitor {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 99999;
+}
+
+@media (max-width: 768px) {
+  .fps-monitor {
+    display: none !important;
+  }
+}

@@ -1,9 +1,20 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import './PerformanceMonitor.css'
 
 export default function PerformanceMonitor() {
   const [fps, setFps] = useState(60)
+  const [isMobile, setIsMobile] = useState(true)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   
   useEffect(() => {
     let frameCount = 0
@@ -26,19 +37,12 @@ export default function PerformanceMonitor() {
     return () => cancelAnimationFrame(rafId)
   }, [])
   
+  if (isMobile) return null
+  
   return (
-    <div style={{
-      position: 'fixed',
-      top: '10px',
-      left: '10px',
-      background: 'rgba(0, 0, 0, 0.7)',
+    <div className="fps-monitor" style={{
       color: fps < 30 ? '#ff0000' : fps < 50 ? '#ffaa00' : '#00ff00',
-      padding: '5px 10px',
-      borderRadius: '5px',
-      fontSize: '12px',
-      fontWeight: 'bold',
-      zIndex: 99999,
-      display: process.env.NODE_ENV === 'development' ? 'block' : 'none'
+      display: isMobile ? 'none' : 'block'
     }}>
       FPS: {fps}
     </div>

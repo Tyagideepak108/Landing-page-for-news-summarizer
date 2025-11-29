@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, Suspense } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
-export default function Woman(props) {
+function WomanModel(props) {
   const modelRef = useRef()
   const { scene, animations } = useGLTF('/models/free_018_kana_sitting.glb')
   const { actions } = useAnimations(animations, modelRef)
@@ -19,4 +19,12 @@ export default function Woman(props) {
   })
   
   return <primitive ref={modelRef} object={scene} {...props} />
+}
+
+export default function Woman(props) {
+  return (
+    <Suspense fallback={null}>
+      <WomanModel {...props} />
+    </Suspense>
+  )
 }

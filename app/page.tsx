@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import HeroScene from '../components/HeroScene'
 import Navigation from '../components/Navigation'
-import ScrollIndicator from '../components/ScrollIndicator'
 import ScrollText from '../components/ScrollText'
 import HeroText from '../components/HeroText'
 import GetStartedButton from '../components/GetStartedButton'
@@ -14,8 +13,23 @@ export default function Home() {
   const [tunnelActive, setTunnelActive] = useState(false)
 
   const handleTunnelStart = () => {
+    sessionStorage.setItem('tunnelPlayed', 'true')
     setTunnelActive(true)
   }
+
+  useEffect(() => {
+    const tunnelPlayed = sessionStorage.getItem('tunnelPlayed')
+    if (tunnelPlayed === 'true') {
+      setTunnelActive(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    const tunnelPlayed = sessionStorage.getItem('tunnelPlayed')
+    if (tunnelPlayed === 'true') {
+      setTunnelActive(false)
+    }
+  }, [])
 
   useEffect(() => {
     document.body.classList.add('home-page')
@@ -38,7 +52,6 @@ export default function Home() {
         <>
           <Navigation />
           <HeroText />
-          <ScrollIndicator />
           <ScrollText />
           <GetStartedButton onTunnelStart={handleTunnelStart} />
           

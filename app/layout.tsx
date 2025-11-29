@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "../components/CustomCursor";
-import ScrollProgress from "../components/ScrollProgress";
 import LoadingScreen from "../components/LoadingScreen";
 
 const inter = Inter({
@@ -23,8 +21,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <LoadingScreen />
-        <CustomCursor />
-        <ScrollProgress />
         {children}
       </body>
     </html>
