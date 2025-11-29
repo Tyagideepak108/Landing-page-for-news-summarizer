@@ -81,7 +81,7 @@ export default function Contact() {
                       </div>
                       <div className="contact-info-text">
                         <p>Email</p>
-                        <p>hello@newssummarizer.com</p>
+                        <p>hello@snapnews.com</p>
                       </div>
                     </div>
                     
@@ -91,7 +91,7 @@ export default function Contact() {
                       </div>
                       <div className="contact-info-text">
                         <p>LinkedIn</p>
-                        <p>@newssummarizer</p>
+                        <p>@snapnews</p>
                       </div>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-# 📰 NewsSummarizer - 3D Landing Page
+# 📰 SnapNews - 3D Landing Page
 
 A stunning 3D interactive landing page built with Next.js, Three.js, and GSAP animations.
 
@@ -92,7 +92,7 @@ The project uses:
 
 ## 📝 License
 
-All rights reserved © 2024 NewsSummarizer
+All rights reserved © 2024 SnapNews
 
 ## 💡 Powered by PRL
 

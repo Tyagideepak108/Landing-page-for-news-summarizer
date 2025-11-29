@@ -42,7 +42,7 @@ const Navigation = () => {
       <div className="nav-container">
         <div className="nav-logo">
           <span className="logo-icon" style={{ fontSize: '2.2rem' }}>📰</span>
-          <span className="logo-text">NewsSummarizer</span>
+          <span className="logo-text">SnapNews</span>
         </div>
         
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>

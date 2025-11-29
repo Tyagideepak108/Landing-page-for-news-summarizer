@@ -38,7 +38,7 @@ export default function AboutPage() {
               textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',
               padding: '0 1rem'
             }}>
-              About News Summarizer
+              About SnapNews
             </h1>
             <div style={{
               width: 'clamp(60px, 15vw, 100px)',

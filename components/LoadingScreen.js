@@ -46,7 +46,7 @@ export default function LoadingScreen() {
         </Canvas>
       </div>
       <div className="loading-content">
-        <h1 className="loading-title">News Summarizer</h1>
+        <h1 className="loading-title">SnapNews</h1>
         <div className="loading-bar">
           <div className="loading-fill" style={{ width: `${progress}%` }} />
         </div>

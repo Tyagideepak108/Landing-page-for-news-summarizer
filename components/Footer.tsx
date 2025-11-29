@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-container">
         <div className="footer-brand">
           <span className="footer-logo">📰</span>
-          <span className="footer-name">NewsSummarizer</span>
+          <span className="footer-name">SnapNews</span>
         </div>
         
         <div className="footer-links">
