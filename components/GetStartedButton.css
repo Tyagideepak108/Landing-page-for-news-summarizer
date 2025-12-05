@@ -7,21 +7,30 @@
   padding: 1.5rem 4rem;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #FFFFFF;
-  background: #00CED1;
-  border: 2px solid #00CED1;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
+  color: #000;
+  background: linear-gradient(135deg, #D4AF37, #B8941E);
+  border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
   transition: all 0.3s ease;
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.5s ease, pulse 2s infinite;
 }
 
 .get-started-btn:hover {
   transform: translate(-50%, -50%) scale(1.05);
-  background: #008B8B;
-  border-color: #008B8B;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.7);
+  }
 }
 
 @keyframes fadeIn {

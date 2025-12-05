@@ -14,7 +14,7 @@
 
 .navbar.scrolled {
   background: rgba(0, 0, 0, 0.95);
-  box-shadow: 0 8px 32px rgba(0, 206, 209, 0.1);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.1);
 }
 
 .navbar.transparent {
@@ -44,8 +44,11 @@
 .nav-logo .logo-text {
   font-size: 1.8rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
-  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #D4AF37, #F4E4B7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -0.02em;
 }
 
@@ -65,7 +68,7 @@
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,7 +86,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #00CED1, #008B8B);
+  background: linear-gradient(90deg, #D4AF37, #B8941E);
   transition: width 0.3s ease;
 }
 
@@ -93,31 +96,32 @@
 }
 
 .nav-link:hover {
-  color: #00CED1;
+  color: #000;
   transform: translateY(-2px);
 }
 
 .nav-link.active {
-  color: #00CED1;
+  color: #000;
 }
 
 .nav-cta-btn {
   padding: 0.6rem 1.5rem;
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  background: linear-gradient(135deg, #00CED1, #008B8B);
+  font-weight: 700;
+  color: #000;
+  background: linear-gradient(135deg, #D4AF37, #B8941E);
   border: none;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 4px 15px rgba(0, 206, 209, 0.3);
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  letter-spacing: 0.05em;
 }
 
 .nav-cta-btn:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 206, 209, 0.4);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
 }
 
 .nav-toggle {

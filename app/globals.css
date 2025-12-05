@@ -1,38 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Lora:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 @import "../components/PageTransition.css";
 
-:root[data-theme="light"] {
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F5;
-  --bg-tertiary: #FAFAFA;
-  --text-primary: #2A2A2A;
-  --text-secondary: #6B7280;
-  --accent: #00CED1;
-  --accent-hover: #008B8B;
-  --border-color: #E5E7EB;
-  --btn-secondary-bg: transparent;
-  --btn-secondary-border: #00CED1;
-}
-
-:root[data-theme="dark"] {
-  --bg-primary: #1A1A1A;
-  --bg-secondary: #2A2A2A;
-  --bg-tertiary: #0A0A0A;
-  --text-primary: #FFFFFF;
-  --text-secondary: #9CA3AF;
-  --accent: #00CED1;
-  --accent-hover: #008B8B;
-  --border-color: #374151;
-  --btn-secondary-bg: transparent;
-  --btn-secondary-border: #00CED1;
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F4E4B7;
+  --gold-dark: #B8941E;
+  --black: #000000;
+  --black-light: #1A1A1A;
+  --white: #FFFFFF;
+  --white-off: #F5F5F5;
+  --gray: #808080;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lora', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -42,15 +27,15 @@ html {
 
 body {
   width: 100%;
-  font-family: 'Lora', serif;
+  font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--black);
+  color: var(--white);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.home-page {
-  background: url('/models/background4.png') no-repeat center center fixed;
+  background: url('/models/background7.png') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -69,7 +54,7 @@ body.home-page::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('/models/background4.png') no-repeat center center;
+  background: url('/models/background7.png') no-repeat center center;
   background-size: cover;
   z-index: 0;
   pointer-events: none;
@@ -83,7 +68,7 @@ body.tunnel-active::before {
 }
 
 body.tunnel-active {
-  background: var(--bg-primary);
+  background: var(--black);
 }
 
 .theme-toggle {
@@ -131,32 +116,32 @@ body.tunnel-active {
 
 [data-theme="light"] nav a:hover,
 [data-theme="light"] nav a.active {
-  color: #00CED1;
-  border-bottom-color: #00CED1;
+  color: #000000;
+  border-bottom-color: #D4AF37;
 }
 
 [data-theme="light"] button.primary,
 [data-theme="light"] .btn-primary {
-  background: #00CED1;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #D4AF37, #B8941E);
+  color: #000000;
 }
 
 [data-theme="light"] button.primary:hover,
 [data-theme="light"] .btn-primary:hover {
-  background: #008B8B;
+  background: linear-gradient(135deg, #B8941E, #D4AF37);
 }
 
 [data-theme="light"] button.secondary,
 [data-theme="light"] .btn-secondary {
   background: transparent;
-  color: #00CED1;
-  border: 1px solid #00CED1;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
 }
 
 [data-theme="light"] button.secondary:hover,
 [data-theme="light"] .btn-secondary:hover {
-  background: rgba(0, 206, 209, 0.1);
-  color: #008B8B;
+  background: rgba(212, 175, 55, 0.1);
+  color: #B8941E;
 }
 
 [data-theme="light"] h1,

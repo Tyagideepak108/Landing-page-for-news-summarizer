@@ -241,16 +241,16 @@ export default function HeroScene({ tunnelActive = false }) {
       />
       
       {/* Cinematic Fill lights */}
-      <pointLight position={[-4, 3, 4]} intensity={0.4} color="#00CED1" />
+      <pointLight position={[-4, 3, 4]} intensity={0.4} color="#D4AF37" />
       <pointLight position={[4, 2, -3]} intensity={0.3} color="#FFFFFF" />
       
-      {/* Volumetric Light Beams - Deep Cyan & White */}
+      {/* Volumetric Light Beams - Gold & White */}
       <spotLight 
         position={[-15, 20, -10]} 
         angle={0.5} 
         penumbra={1} 
         intensity={2.5} 
-        color="#00CED1" 
+        color="#D4AF37" 
         distance={50}
       />
       <spotLight 
@@ -271,7 +271,7 @@ export default function HeroScene({ tunnelActive = false }) {
       />
       
       {/* Floor dramatic lighting */}
-      <pointLight position={[0, 1, 0]} intensity={0.4} color="#00CED1" distance={5} />
+      <pointLight position={[0, 1, 0]} intensity={0.4} color="#D4AF37" distance={5} />
       <pointLight position={[-2, 0.3, 2]} intensity={0.3} color="#808080" distance={3} />
       <pointLight position={[2, 0.3, -2]} intensity={0.3} color="#FFFFFF" distance={3} />
       
@@ -281,7 +281,7 @@ export default function HeroScene({ tunnelActive = false }) {
         intensity={0.5} 
         angle={Math.PI / 3}
         penumbra={0.5}
-        color="#00CED1"
+        color="#D4AF37"
       />
       
 
@@ -298,10 +298,10 @@ export default function HeroScene({ tunnelActive = false }) {
         >
           <circleGeometry args={[1.5, 32]} />
           <meshPhysicalMaterial 
-            color="#2a2a2a"
+            color="#1a1a1a"
             roughness={0.3}
             metalness={0.7}
-            emissive="#00CED1"
+            emissive="#D4AF37"
             emissiveIntensity={0.15}
           />
         </mesh>

@@ -103,20 +103,22 @@ export default function ZigZagSection() {
               order: isMobile ? 2 : (isEven ? 2 : 1)
             }}>
               <h2 style={{
-                fontFamily: 'Playfair Display, serif',
+                fontFamily: 'Montserrat, sans-serif',
                 fontSize: isMobile ? 'clamp(1.8rem, 5vw, 2.5rem)' : '2.8rem',
-                color: '#00CED1',
+                fontWeight: 700,
+                color: '#D4AF37',
                 marginBottom: '1rem',
                 lineHeight: '1.2'
               }}>
                 {item.heading}
               </h2>
               <p style={{
-                fontFamily: 'Poppins, sans-serif',
+                fontFamily: 'Montserrat, sans-serif',
                 fontSize: isMobile ? 'clamp(0.95rem, 2.5vw, 1.1rem)' : '1.2rem',
+                fontWeight: 400,
                 color: '#ffffff',
                 lineHeight: '1.8',
-                opacity: 0.9
+                opacity: 0.95
               }}>
                 {item.paragraph}
               </p>

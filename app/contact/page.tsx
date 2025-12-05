@@ -20,7 +20,7 @@ export default function Contact() {
   ];
 
   useEffect(() => {
-    document.body.style.background = 'url("/models/background4.png") no-repeat center center fixed';
+    document.body.style.background = 'url("/models/background6.png") no-repeat center center fixed';
     document.body.style.backgroundSize = 'cover';
     
     return () => {

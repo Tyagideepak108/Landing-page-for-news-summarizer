@@ -30,9 +30,12 @@
 
 .footer-name {
   font-size: 1.2rem;
-  font-weight: 600;
-  color: #00CED1;
-  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, #D4AF37, #F4E4B7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-links {
@@ -44,12 +47,12 @@
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #00CED1;
+  color: #D4AF37;
 }
 
 .footer-powered {
@@ -58,11 +61,11 @@
   gap: 0.5rem;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-powered-brand {
-  color: #00CED1;
+  color: #D4AF37;
   font-weight: 700;
   font-size: 1rem;
 }

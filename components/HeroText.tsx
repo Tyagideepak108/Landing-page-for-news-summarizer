@@ -33,33 +33,39 @@ export default function HeroText() {
           fontWeight: 800,
           marginBottom: '1rem',
           lineHeight: 1.1,
-          background: 'linear-gradient(135deg, #00CED1 0%, #FFFFFF 100%)',
+          fontFamily: 'Montserrat, sans-serif',
+          background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4B7 50%, #D4AF37 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text'
+          backgroundClip: 'text',
+          letterSpacing: '-0.02em'
         }}>
           AI-Powered News in Seconds
         </h1>
         <p style={{ 
           fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', 
-          color: 'rgba(255,255,255,0.85)',
+          color: 'rgba(255,255,255,0.9)',
           marginBottom: '2rem',
-          fontWeight: 300
+          fontWeight: 400,
+          fontFamily: 'Montserrat, sans-serif',
+          letterSpacing: '0.01em'
         }}>
           Transform lengthy articles into concise summaries
         </p>
         <button style={{
-          background: 'linear-gradient(135deg, #00CED1 0%, #008B8B 100%)',
-          color: '#fff',
+          background: 'linear-gradient(135deg, #D4AF37 0%, #B8941E 100%)',
+          color: '#000',
           padding: 'clamp(0.8rem, 2vw, 1.2rem) clamp(2rem, 4vw, 3rem)',
           fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-          fontWeight: 600,
+          fontWeight: 700,
+          fontFamily: 'Montserrat, sans-serif',
           border: 'none',
           borderRadius: '50px',
           cursor: 'pointer',
-          boxShadow: '0 10px 30px rgba(0,206,209,0.3)',
+          boxShadow: '0 10px 30px rgba(212,175,55,0.4)',
           transition: 'all 0.3s ease',
-          animation: 'pulse 2s infinite'
+          animation: 'pulse 2s infinite',
+          letterSpacing: '0.05em'
         }}
         onMouseEnter={(e) => (e.target as HTMLButtonElement).style.transform = 'scale(1.05)'}
         onMouseLeave={(e) => (e.target as HTMLButtonElement).style.transform = 'scale(1)'}
@@ -75,16 +81,16 @@ export default function HeroText() {
           flexWrap: 'wrap'
         }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#00CED1' }}>10K+</div>
-            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>Articles</div>
+            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#D4AF37', fontFamily: 'Montserrat, sans-serif' }}>10K+</div>
+            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.8)', fontFamily: 'Montserrat, sans-serif', fontWeight: 500 }}>Articles</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#00CED1' }}>99%</div>
-            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>Accuracy</div>
+            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#D4AF37', fontFamily: 'Montserrat, sans-serif' }}>99%</div>
+            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.8)', fontFamily: 'Montserrat, sans-serif', fontWeight: 500 }}>Accuracy</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#00CED1' }}>500+</div>
-            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.7)' }}>Users</div>
+            <div style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, color: '#D4AF37', fontFamily: 'Montserrat, sans-serif' }}>500+</div>
+            <div style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', color: 'rgba(255,255,255,0.8)', fontFamily: 'Montserrat, sans-serif', fontWeight: 500 }}>Users</div>
           </div>
         </div>
       </div>

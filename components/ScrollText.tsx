@@ -11,7 +11,6 @@ export default function ScrollText() {
       const scrollY = window.scrollY
       const scrollPercent = (scrollY / (document.documentElement.scrollHeight - windowHeight)) * 100
       
-      // Text appears with newspapers (same timing)
       const progress = Math.max(0, Math.min((scrollY - windowHeight * 0.3) / (windowHeight * 1.5), 1))
       setScrollProgress(scrollPercent >= 80 ? -1 : progress)
     }
@@ -39,19 +38,24 @@ export default function ScrollText() {
         borderRadius: '20px'
       }}>
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" style={{
-          fontFamily: 'Playfair Display, serif',
+          fontFamily: 'Montserrat, sans-serif',
+          fontWeight: 800,
           textShadow: '0 2px 8px rgba(0, 0, 0, 0.7)'
         }}>
           Are you frustrated with{' '}
           <span style={{
-            color: '#00CED1'
+            background: 'linear-gradient(135deg, #D4AF37, #F4E4B7)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
           }}>
             long news?
           </span>
         </h2>
         <p className="text-2xl md:text-4xl lg:text-5xl font-light" style={{
-          fontFamily: 'Lora, serif',
-          color: '#00CED1',
+          fontFamily: 'Montserrat, sans-serif',
+          fontWeight: 400,
+          color: '#D4AF37',
           textShadow: '0 2px 8px rgba(0, 0, 0, 0.7)'
         }}>
           Don't worry, we got you covered.
