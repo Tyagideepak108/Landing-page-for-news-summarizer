@@ -2,24 +2,66 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(26, 26, 26, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
   z-index: 1000;
   padding: 1rem 0;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .navbar.scrolled {
   background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(212, 175, 55, 0.1);
 }
 
 .navbar.transparent {
   background: transparent;
   backdrop-filter: none;
+}
+
+/* Home page - always transparent with black text when not scrolled */
+.navbar.home-transparent .nav-link {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.navbar.home-transparent .nav-link:hover {
+  color: #D4AF37 !important;
+}
+
+.navbar.home-transparent .nav-link.active {
+  color: #000000 !important;
+  background: rgba(212, 175, 55, 0.9) !important;
+}
+
+.navbar.home-transparent .bar {
+  background: #000;
+}
+
+/* Home page scrolled - stay transparent but white text */
+.navbar.scrolled.home-page {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.navbar.scrolled.home-page .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar.scrolled.home-page .nav-link:hover {
+  color: #D4AF37 !important;
+}
+
+.navbar.scrolled.home-page .bar {
+  background: white;
 }
 
 .nav-container {
@@ -52,7 +94,7 @@
   letter-spacing: -0.02em;
 }
 
-.nav-menu {
+.nav-menu-desktop {
   display: flex;
   list-style: none;
   margin: 0;
@@ -76,32 +118,38 @@
   letter-spacing: -0.01em;
   cursor: pointer;
   display: inline-block;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #D4AF37, #B8941E);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 80%;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .nav-link:hover {
-  color: #000;
+  color: #D4AF37 !important;
   transform: translateY(-2px);
+  background: transparent !important;
+}
+
+.nav-link:focus {
+  color: #000000 !important;
+  background: rgba(212, 175, 55, 0.9) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.nav-link:active {
+  color: #000000 !important;
+  background: rgba(212, 175, 55, 0.9) !important;
+}
+
+.nav-link:visited {
+  color: rgba(255, 255, 255, 0.9);
+  background: transparent !important;
 }
 
 .nav-link.active {
-  color: #000;
+  color: #000000 !important;
+  background: rgba(212, 175, 55, 0.9) !important;
 }
 
 .nav-cta-btn {
@@ -128,6 +176,112 @@
   display: none;
   flex-direction: column;
   cursor: pointer;
+  z-index: 1002;
+  position: relative;
+}
+
+@media screen and (min-width: 769px) {
+  .sidebar-drawer {
+    display: none;
+  }
+  
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sidebar-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 2rem 2rem 2rem;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.sidebar-item {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.sidebar-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-link:hover {
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.1);
+  border-left-color: #D4AF37;
+  transform: translateX(10px);
+}
+
+.sidebar-link.active {
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.15);
+  border-left-color: #D4AF37;
+}
+
+.sidebar-cta-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  background: linear-gradient(135deg, #D4AF37, #B8941E);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.sidebar-cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.6);
 }
 
 .bar {
@@ -158,26 +312,12 @@
     font-size: 1.4rem;
   }
   
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 70px;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    padding: 2rem 0;
-    gap: 1rem;
-  }
-
-  .nav-menu.active {
-    left: 0;
+  .nav-menu-desktop {
+    display: none !important;
   }
 
   .nav-toggle {
-    display: flex;
+    display: flex !important;
   }
 
   .nav-toggle.active .bar:nth-child(2) {
@@ -186,10 +326,20 @@
 
   .nav-toggle.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
+    background: #D4AF37;
   }
 
   .nav-toggle.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+    background: #D4AF37;
+  }
+
+  .sidebar-drawer {
+    width: 280px;
+  }
+
+  .sidebar-link {
+    font-size: 1.3rem;
   }
 }
 
@@ -209,5 +359,20 @@
   .nav-link {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
+  }
+
+  .sidebar-drawer {
+    width: 85vw;
+    max-width: 300px;
+  }
+
+  .sidebar-link {
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .sidebar-cta-btn {
+    font-size: 1.1rem;
+    padding: 0.9rem 1.2rem;
   }
 }

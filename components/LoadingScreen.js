@@ -1,56 +1,99 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import './LoadingScreen.css'
-
-function Logo3D() {
-  return (
-    <mesh rotation={[0, 0, 0]}>
-      <torusKnotGeometry args={[1, 0.3, 128, 16]} />
-      <meshStandardMaterial color="#00d4ff" metalness={0.8} roughness={0.2} />
-    </mesh>
-  )
-}
 
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
+  const [headline, setHeadline] = useState('Breaking News...')
+  const [flipPage, setFlipPage] = useState(false)
+
+  const headlines = [
+    'Breaking News...',
+    'Loading Stories...',
+    'Preparing Headlines...',
+    'Fetching Updates...',
+    'Almost Ready...'
+  ]
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    let flipInterval
+    let flipSpeed = 1500
+
+    const progressInterval = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          setTimeout(() => setIsVisible(false), 300)
+        const newProgress = prev + 1
+        
+        if (newProgress >= 100) {
+          clearInterval(progressInterval)
+          if (flipInterval) clearInterval(flipInterval)
+          setTimeout(() => setIsVisible(false), 800)
           return 100
         }
-        return prev + 5
+        
+        // Speed up flips as progress increases
+        flipSpeed = Math.max(400, 1500 - (newProgress * 10))
+        
+        return newProgress
       })
-    }, 50)
+    }, 80)
 
-    return () => clearInterval(interval)
+    const startFlipping = () => {
+      flipInterval = setInterval(() => {
+        setFlipPage(true)
+        setTimeout(() => {
+          setHeadline(headlines[Math.floor(Math.random() * headlines.length)])
+          setFlipPage(false)
+        }, 600)
+      }, flipSpeed)
+    }
+
+    startFlipping()
+
+    return () => {
+      clearInterval(progressInterval)
+      if (flipInterval) clearInterval(flipInterval)
+    }
   }, [])
 
   if (!isVisible) return null
 
   return (
     <div className={`loading-screen ${progress === 100 ? 'fade-out' : ''}`}>
-      <div className="loading-canvas">
-        <Canvas camera={{ position: [0, 0, 5] }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <Logo3D />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={4} />
-        </Canvas>
+      <div className="newspaper-container">
+        <div className={`newspaper-page ${flipPage ? 'flipping' : ''}`}>
+          <div className="newspaper-front">
+            <div className="newspaper-header">
+              <div className="newspaper-logo">📰</div>
+              <h1 className="newspaper-title">SNAPNEWS</h1>
+              <div className="newspaper-date">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            </div>
+            <div className="newspaper-divider"></div>
+            <div className="newspaper-headline">{headline}</div>
+            <div className="newspaper-content">
+              <div className="newspaper-column"></div>
+              <div className="newspaper-column"></div>
+              <div className="newspaper-column"></div>
+            </div>
+          </div>
+          <div className="newspaper-back">
+            <div className="newspaper-header">
+              <div className="newspaper-logo">📰</div>
+              <h1 className="newspaper-title">SNAPNEWS</h1>
+            </div>
+            <div className="newspaper-divider"></div>
+            <div className="newspaper-headline">AI-Powered News</div>
+            <div className="newspaper-content">
+              <div className="newspaper-column"></div>
+              <div className="newspaper-column"></div>
+              <div className="newspaper-column"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="loading-content">
-        <h1 className="loading-title">SnapNews</h1>
-        <div className="loading-bar">
-          <div className="loading-fill" style={{ width: `${progress}%` }} />
-        </div>
-        <p className="loading-percentage">{progress}%</p>
+        <p className="loading-text">Loading... {progress}%</p>
       </div>
     </div>
   )

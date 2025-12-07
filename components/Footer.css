@@ -1,35 +1,50 @@
 .footer {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 1) 100%);
+  backdrop-filter: blur(20px);
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
   position: relative;
   z-index: 10;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+.footer-main {
+  padding: 4rem 2rem 2rem;
 }
 
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+/* Footer Columns */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Brand Section */
 .footer-brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .footer-logo {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  color: #D4AF37;
+}
+
+.footer-logo svg {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .footer-name {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   background: linear-gradient(135deg, #D4AF37, #F4E4B7);
   -webkit-background-clip: text;
@@ -38,28 +53,177 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.footer-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Social Icons */
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-icon {
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.social-icon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+/* Headings */
+.footer-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #D4AF37;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
 .footer-links {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .footer-link {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: 'Montserrat', sans-serif;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  width: fit-content;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
 }
 
 .footer-link:hover {
   color: #D4AF37;
+  transform: translateX(5px);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Newsletter Section */
+.newsletter-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.newsletter-form {
+  margin-top: 0.5rem;
+}
+
+.newsletter-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-input:focus {
+  border-color: #D4AF37;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.newsletter-btn {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #D4AF37, #B8941E);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.footer-bottom-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copyright {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .footer-powered {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
   font-family: 'Montserrat', sans-serif;
 }
@@ -70,14 +234,73 @@
   font-size: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
   .footer-container {
-    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-main {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
     text-align: center;
-    gap: 1.5rem;
+  }
+
+  .footer-column {
+    align-items: center;
+  }
+
+  .footer-description,
+  .newsletter-text {
+    max-width: 100%;
   }
 
   .footer-links {
-    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .footer-link:hover {
+    transform: translateX(0) scale(1.05);
+  }
+
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .newsletter-input-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-main {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .footer-name {
+    font-size: 1.5rem;
+  }
+
+  .footer-heading {
+    font-size: 1.1rem;
+  }
+
+  .footer-description,
+  .newsletter-text,
+  .footer-link {
+    font-size: 0.9rem;
+  }
+
+  .social-icon {
+    font-size: 1.5rem;
   }
 }

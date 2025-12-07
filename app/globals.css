@@ -116,7 +116,7 @@ body.tunnel-active {
 
 [data-theme="light"] nav a:hover,
 [data-theme="light"] nav a.active {
-  color: #000000;
+  color: #D4AF37;
   border-bottom-color: #D4AF37;
 }
 

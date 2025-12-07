@@ -71,7 +71,7 @@ function StarField({ speedRef, opacityRef }) {
     <instancedMesh ref={mesh} args={[undefined, undefined, STAR_COUNT]}>
       <boxGeometry args={[0.15, 0.15, 6]} />
       <meshBasicMaterial 
-        color="#4A9B9B" 
+        color="#D4AF37" 
         transparent 
         opacity={0}
       />
@@ -83,9 +83,17 @@ export default function TunnelAnimation({ isActive }) {
   const speedRef = useRef(0)
   const opacityRef = useRef(0)
   const [flash, setFlash] = useState(0)
+  const audioRef = useRef(null)
 
   useEffect(() => {
     if (!isActive) return
+
+    // Initialize and play audio
+    if (typeof window !== 'undefined') {
+      audioRef.current = new Audio('/models/tunnel_audio.mp3')
+      audioRef.current.volume = 0.7
+      audioRef.current.play().catch(err => console.log('Audio play failed:', err))
+    }
 
     const startTime = Date.now()
 
@@ -116,13 +124,34 @@ export default function TunnelAnimation({ isActive }) {
       }
       else if (elapsed >= 1800) {
         clearInterval(interval)
+        
+        // Fade out and stop audio
+        if (audioRef.current) {
+          const fadeOut = setInterval(() => {
+            if (audioRef.current.volume > 0.1) {
+              audioRef.current.volume -= 0.1
+            } else {
+              audioRef.current.pause()
+              audioRef.current.currentTime = 0
+              clearInterval(fadeOut)
+            }
+          }, 50)
+        }
+        
         if (typeof window !== 'undefined') {
           window.location.href = 'https://suvidha-text-summarizer.vercel.app/'
         }
       }
     }, 16)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      // Cleanup audio on unmount
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+      }
+    }
   }, [isActive])
 
   if (!isActive) return null

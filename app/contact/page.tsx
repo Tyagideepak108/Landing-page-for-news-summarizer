@@ -1,45 +1,45 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { MdEmail, MdLocationOn, MdBusiness } from 'react-icons/md';
+import { FaArrowRight } from 'react-icons/fa';
 import Navigation from '../../components/Navigation';
 import PageArrival from '../../components/PageArrival';
 import Footer from '../../components/Footer';
 import './contact.css';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [focusedField, setFocusedField] = useState('');
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const globeRef = useRef<HTMLDivElement>(null);
 
-  const faqs = [
-    { q: 'Is it free?', a: 'Yes! Our basic plan is completely free with up to 10 summaries per day.' },
-    { q: 'How accurate is it?', a: 'Our AI achieves 99% accuracy using advanced NLP and machine learning algorithms.' },
-    { q: 'What languages are supported?', a: 'Currently English, with Spanish, French, and German coming soon.' },
-    { q: 'Can I export summaries?', a: 'Yes, you can export as PDF, Word documents, or share directly via email.' }
-  ];
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+  };
 
   useEffect(() => {
-    document.body.style.background = 'url("/models/background6.png") no-repeat center center fixed';
+    document.body.style.background = 'url("/models/background7.png") no-repeat center center fixed';
     document.body.style.backgroundSize = 'cover';
     
     return () => {
       document.body.style.background = '';
       document.body.style.backgroundSize = '';
     };
-  }, []);
-
-  useEffect(() => {
-    const globe = globeRef.current;
-    if (globe) {
-      let rotation = 0;
-      const animate = () => {
-        rotation += 0.5;
-        globe.style.transform = `rotateY(${rotation}deg)`;
-        requestAnimationFrame(animate);
-      };
-      animate();
-    }
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -49,7 +49,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert('Message sent! We\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
@@ -61,156 +61,161 @@ export default function Contact() {
         <Navigation />
         
         <div className="contact-content">
-          {/* Split Screen Layout */}
-          <section className="contact-split-section">
-            <div className="contact-split-container">
-              <div className="contact-grid">
-                
-                {/* Left Side - Info */}
-                <div className="contact-info">
-                  <div className="contact-header">
-                    <h1>Let's Talk</h1>
-                    <p>Have questions? We'd love to hear from you.</p>
-                  </div>
-
-                  {/* Contact Info */}
-                  <div className="contact-info-items">
-                    <div className="contact-info-item">
-                      <div className="contact-icon">
-                        <span>📧</span>
-                      </div>
-                      <div className="contact-info-text">
-                        <p>Email</p>
-                        <p>hello@snapnews.com</p>
-                      </div>
-                    </div>
-                    
-                    <div className="contact-info-item">
-                      <div className="contact-icon">
-                        <span>💼</span>
-                      </div>
-                      <div className="contact-info-text">
-                        <p>LinkedIn</p>
-                        <p>@snapnews</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 3D Globe */}
-                  <div className="contact-globe-wrapper">
-                    <div className="contact-globe">
-                      <div ref={globeRef} className="contact-globe-inner">
-                        <div className="contact-globe-ring"></div>
-                        <div className="contact-globe-icon">🌐</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side - Form */}
-                <div className="contact-form-wrapper">
-                  <form onSubmit={handleSubmit} className="contact-form">
-                    <h2>Send Message</h2>
-
-                    {/* Name Field */}
-                    <div className="contact-input-group">
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField('name')}
-                        onBlur={() => setFocusedField('')}
-                        placeholder="Your Name"
-                        className="contact-input"
-                        required
-                      />
-                      <div className={`contact-input-underline ${
-                        focusedField === 'name' || formData.name ? 'w-full' : 'w-0'
-                      }`}></div>
-                    </div>
-
-                    {/* Email Field */}
-                    <div className="contact-input-group">
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField('email')}
-                        onBlur={() => setFocusedField('')}
-                        placeholder="Your Email"
-                        className="contact-input"
-                        required
-                      />
-                      <div className={`contact-input-underline ${
-                        focusedField === 'email' || formData.email ? 'w-full' : 'w-0'
-                      }`}></div>
-                    </div>
-
-                    {/* Message Field */}
-                    <div className="contact-input-group">
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField('message')}
-                        onBlur={() => setFocusedField('')}
-                        placeholder="Your Message"
-                        rows={3}
-                        className="contact-textarea"
-                        required
-                      ></textarea>
-                      <div className={`contact-input-underline ${
-                        focusedField === 'message' || formData.message ? 'w-full' : 'w-0'
-                      }`}></div>
-                    </div>
-
-                    {/* Submit Button */}
-                    <button type="submit" className="contact-submit-btn">
-                      Send Message
-                    </button>
-                  </form>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section className="contact-faq-section">
-            <div className="contact-faq-container">
-              <h2 className="contact-faq-title">
-                Frequently Asked Questions
-              </h2>
+          <div className="contact-split">
+            
+            {/* Left Column - Info & Globe */}
+            <div className="contact-left">
+              <h1 className="contact-title">Get In Touch</h1>
+              <p className="contact-subtitle">We're here to help and answer any questions</p>
               
-              <div className="contact-faq-list">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="contact-faq-item">
-                    <button
-                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                      className="contact-faq-question"
-                    >
-                      <span>{faq.q}</span>
-                      <span className={`contact-faq-icon ${openFaq === index ? 'open' : ''}`}>
-                        +
-                      </span>
-                    </button>
-                    
-                    <div className={`contact-faq-answer ${openFaq === index ? 'open' : 'closed'}`}>
-                      <div className="contact-faq-answer-text">
-                        {faq.a}
-                      </div>
-                    </div>
+              <div className="contact-info-cards">
+                <div 
+                  className="info-card"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="info-icon"><MdEmail /></div>
+                  <div className="info-text">
+                    <h4>Email</h4>
+                    <p>hello@snapnews.com</p>
                   </div>
-                ))}
+                </div>
+                <div 
+                  className="info-card"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="info-icon"><MdLocationOn /></div>
+                  <div className="info-text">
+                    <h4>Global Reach</h4>
+                    <p>Available Worldwide</p>
+                  </div>
+                </div>
+                <div 
+                  className="info-card"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="info-icon"><MdBusiness /></div>
+                  <div className="info-text">
+                    <h4>LinkedIn</h4>
+                    <p>@snapnews</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
+
+            {/* Right Column - Contact Form with Floating Labels */}
+            <div className="contact-right">
+              <div 
+                className="contact-form-wrapper"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+              >
+                <form onSubmit={handleSubmit} className="contact-form">
+                <h2 className="form-title">Send Us a Message</h2>
+
+                {/* Floating Label Input - Name */}
+                <div className="floating-input">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField('name')}
+                    onBlur={() => setFocusedField('')}
+                    required
+                    className="form-input"
+                  />
+                  <label 
+                    htmlFor="name" 
+                    className={`form-label ${formData.name || focusedField === 'name' ? 'active' : ''}`}
+                  >
+                    Your Name
+                  </label>
+                  <div className={`form-underline ${focusedField === 'name' ? 'focused' : ''}`}></div>
+                </div>
+
+                {/* Floating Label Input - Email */}
+                <div className="floating-input">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField('')}
+                    required
+                    className="form-input"
+                  />
+                  <label 
+                    htmlFor="email" 
+                    className={`form-label ${formData.email || focusedField === 'email' ? 'active' : ''}`}
+                  >
+                    Email Address
+                  </label>
+                  <div className={`form-underline ${focusedField === 'email' ? 'focused' : ''}`}></div>
+                </div>
+
+                {/* Floating Label Input - Subject */}
+                <div className="floating-input">
+                  <input
+                    type="text"
+                    name="subject"
+                    id="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField('subject')}
+                    onBlur={() => setFocusedField('')}
+                    required
+                    className="form-input"
+                  />
+                  <label 
+                    htmlFor="subject" 
+                    className={`form-label ${formData.subject || focusedField === 'subject' ? 'active' : ''}`}
+                  >
+                    Subject
+                  </label>
+                  <div className={`form-underline ${focusedField === 'subject' ? 'focused' : ''}`}></div>
+                </div>
+
+                {/* Floating Label Textarea - Message */}
+                <div className="floating-input">
+                  <textarea
+                    name="message"
+                    id="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField('message')}
+                    onBlur={() => setFocusedField('')}
+                    required
+                    rows={4}
+                    className="form-textarea"
+                  ></textarea>
+                  <label 
+                    htmlFor="message" 
+                    className={`form-label ${formData.message || focusedField === 'message' ? 'active' : ''}`}
+                  >
+                    Your Message
+                  </label>
+                  <div className={`form-underline ${focusedField === 'message' ? 'focused' : ''}`}></div>
+                </div>
+
+                {/* Submit Button */}
+                <button type="submit" className="form-submit-btn">
+                  <span>Send Message</span>
+                  <FaArrowRight className="btn-arrow" />
+                </button>
+              </form>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
       
-      {/* Footer */}
       <Footer />
     </>
   );

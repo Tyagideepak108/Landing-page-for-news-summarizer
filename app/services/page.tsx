@@ -1,106 +1,91 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { FaBolt, FaChartLine, FaGlobe, FaLock, FaCheck } from 'react-icons/fa';
 import Navigation from '../../components/Navigation';
 import PageArrival from '../../components/PageArrival';
 import Footer from '../../components/Footer';
 import './services.css';
 
 export default function Services() {
-  const [counters, setCounters] = useState([0, 0, 0, 0]);
-  const [isStatsVisible, setIsStatsVisible] = useState(false);
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
-  const statsRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  const stats = [
-    { target: 10000, suffix: '+', label: 'Articles Summarized' },
-    { target: 500, suffix: '+', label: 'Active Users' },
-    { target: 99, suffix: '%', label: 'Accuracy Rate' },
-    { target: 24, suffix: '/7', label: 'Available' }
+  const services = [
+    { 
+      icon: FaBolt, 
+      title: 'Instant Summarization', 
+      desc: 'AI-powered text summarization in seconds with advanced NLP algorithms',
+      features: ['Real-time processing', 'Multiple formats', 'Smart extraction']
+    },
+    { 
+      icon: FaChartLine, 
+      title: 'Smart Analysis', 
+      desc: 'Deep content understanding with sentiment analysis and key insights',
+      features: ['Sentiment detection', 'Topic modeling', 'Entity recognition']
+    },
+    { 
+      icon: FaGlobe, 
+      title: 'Multi-Language', 
+      desc: 'Support for 50+ languages with automatic translation capabilities',
+      features: ['Auto-detect language', 'Cross-language summary', 'Native support']
+    },
+    { 
+      icon: FaLock, 
+      title: 'Secure & Private', 
+      desc: 'Enterprise-grade security with end-to-end encryption',
+      features: ['Data encryption', 'Privacy first', 'GDPR compliant']
+    }
   ];
 
-  const features = [
-    { icon: '⚡', title: 'Instant Summarization', desc: 'AI-powered text summarization in seconds' },
-    { icon: '🕐', title: 'History Tracking', desc: 'Track all your reading progress' },
-    { icon: '📥', title: 'Export Options', desc: 'Download as PDF, Word, or share' },
-    { icon: '🌍', title: 'Multi-Language', desc: 'Support for multiple languages' },
-    { icon: '🎯', title: 'Smart Analysis', desc: 'Deep content understanding' },
-    { icon: '🔒', title: 'Secure & Private', desc: 'Your data stays protected' }
+  const plans = [
+    {
+      name: 'Free',
+      price: '$0',
+      period: '/month',
+      features: ['10 summaries/day', 'Basic analysis', 'Email support', '5 languages'],
+      recommended: false
+    },
+    {
+      name: 'Pro',
+      price: '$19',
+      period: '/month',
+      features: ['Unlimited summaries', 'Advanced AI analysis', 'Priority support', '50+ languages', 'Export to PDF/Word', 'API access'],
+      recommended: true
+    }
   ];
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+  };
+
+  const handlePlanClick = (planName: string) => {
+    if (planName === 'Free') {
+      window.location.href = 'https://suvidha-text-summarizer.vercel.app/';
+    }
+  };
 
   useEffect(() => {
-    document.body.style.background = 'url("/models/background6.png") no-repeat center center fixed';
+    document.body.style.background = 'url("/models/background7.png") no-repeat center center fixed';
     document.body.style.backgroundSize = 'cover';
     
     return () => {
       document.body.style.background = '';
       document.body.style.backgroundSize = '';
     };
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isStatsVisible) {
-          setIsStatsVisible(true);
-          animateCounters();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isStatsVisible]);
-
-  const animateCounters = () => {
-    stats.forEach((stat, index) => {
-      let current = 0;
-      const increment = stat.target / 50;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= stat.target) {
-          current = stat.target;
-          clearInterval(timer);
-        }
-        setCounters(prev => {
-          const newCounters = [...prev];
-          newCounters[index] = Math.floor(current);
-          return newCounters;
-        });
-      }, 30);
-    });
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt((entry.target as HTMLElement).dataset.index || '0');
-            setTimeout(() => {
-              setVisibleCards(prev => {
-                if (!prev.includes(index)) {
-                  return [...prev, index];
-                }
-                return prev;
-              });
-            }, index * 200);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cardsRef.current.forEach(card => {
-      if (card) observer.observe(card);
-    });
-
-    return () => observer.disconnect();
   }, []);
 
   return (
@@ -114,90 +99,80 @@ export default function Services() {
         <div className="services-content">
           {/* Hero Section */}
           <section className="services-hero">
-            <div className="services-hero-content">
-              <h1>Powerful AI Tools</h1>
-              <p>More than just summarizing.</p>
-            </div>
+            <h1 className="services-hero-title">Our Services</h1>
+            <p className="services-hero-subtitle">Powerful AI tools to transform your reading experience</p>
           </section>
 
-          {/* Stats Ticker */}
-          <section ref={statsRef} className="services-stats">
-            <div className="services-stats-container">
-              <div className="services-stats-grid">
-                {stats.map((stat, index) => (
-                  <div key={index} className="services-stat-item">
-                    <div className="services-stat-number">
-                      {counters[index]}{stat.suffix}
+          {/* Services Cards with 3D Tilt */}
+          <section className="services-section">
+            <div className="services-grid">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="service-card"
+                  onMouseMove={(e) => handleMouseMove(e, index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="service-card-inner">
+                    <div className="service-icon"><service.icon /></div>
+                    <h3 className="service-title">{service.title}</h3>
+                    <div className="service-expand">
+                      <p className="service-desc">{service.desc}</p>
+                      <ul className="service-features">
+                        {service.features.map((feature, i) => (
+                          <li key={i}><FaCheck className="feature-check" /> {feature}</li>
+                        ))}
+                      </ul>
+                      <button className="service-btn">Learn More</button>
                     </div>
-                    <p className="services-stat-label">
-                      {stat.label}
-                    </p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </section>
 
-          {/* Cards Grid */}
-          <section className="services-cards">
-            <div className="services-cards-container">
-              <div className="services-cards-grid">
-                
-                {features.map((feature, index) => {
-                  const isVisible = visibleCards.includes(index);
-                  
-                  return (
-                    <div
-                      key={index}
-                      ref={el => { cardsRef.current[index] = el; }}
-                      data-index={index}
-                      className="services-card"
-                      style={{
-                        opacity: isVisible ? 1 : 0,
-                        transform: `translateY(${isVisible ? 0 : 50}px) scale(${isVisible ? 1 : 0.9})`,
-                        filter: isVisible ? 'blur(0px)' : 'blur(3px)'
-                      }}
-                    >
-                      <div className="services-card-icon" 
-                           style={{ 
-                             opacity: isVisible ? 1 : 0,
-                             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                             transition: 'all 0.8s ease',
-                             transitionDelay: `${index * 0.1 + 0.2}s`
-                           }}>
-                        {feature.icon}
-                      </div>
-                      
-                      <h3 className="services-card-title" 
-                          style={{ 
-                            opacity: isVisible ? 1 : 0,
-                            transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
-                            transition: 'all 0.8s ease',
-                            transitionDelay: `${index * 0.1 + 0.4}s`
-                          }}>
-                        {feature.title}
-                      </h3>
-                      
-                      <p className="services-card-desc" 
-                         style={{ 
-                           opacity: isVisible ? 1 : 0,
-                           transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
-                           transition: 'all 0.8s ease',
-                           transitionDelay: `${index * 0.1 + 0.6}s`
-                         }}>
-                        {feature.desc}
-                      </p>
+          {/* Pricing Section */}
+          <section className="pricing-section">
+            <h2 className="pricing-title">Choose Your Plan</h2>
+            <p className="pricing-subtitle">Start free, upgrade when you need more</p>
+            
+            <div className="pricing-grid">
+              {plans.map((plan, index) => (
+                <div
+                  key={index}
+                  className={`pricing-card ${plan.recommended ? 'recommended' : ''}`}
+                  onMouseMove={(e) => handleMouseMove(e, index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {plan.recommended && <div className="recommended-badge">Recommended</div>}
+                  <div className="pricing-card-inner">
+                    <h3 className="pricing-name">{plan.name}</h3>
+                    <div className="pricing-price">
+                      <span className="price-amount">{plan.price}</span>
+                      <span className="price-period">{plan.period}</span>
                     </div>
-                  );
-                })}
-
-              </div>
+                    <ul className="pricing-features">
+                      {plan.features.map((feature, i) => (
+                        <li key={i}>
+                          <FaCheck className="feature-icon" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <button 
+                      className={`pricing-btn ${plan.recommended ? 'primary' : 'secondary'}`}
+                      onClick={() => handlePlanClick(plan.name)}
+                    >
+                      {plan.recommended ? 'Get Started' : 'Start Free'}
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </div>
       </div>
       
-      {/* Footer */}
       <Footer />
     </>
   );
