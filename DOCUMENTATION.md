@@ -1065,6 +1065,6 @@ console.log('Props:', props)
 
 ---
 
-**Last Updated:** December 2024
+**Last Updated:** December 2025
 **Version:** 1.0.0
 **License:** All Rights Reserved © 2026 SnapNews
