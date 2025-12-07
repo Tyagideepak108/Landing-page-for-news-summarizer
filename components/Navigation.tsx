@@ -109,7 +109,7 @@ const Navigation = () => {
           {navItems.map((item, index) => (
             <div 
               key={index} 
-              ref={el => menuItemsRef.current[index] = el}
+              ref={el => { menuItemsRef.current[index] = el }}
               className="sidebar-item"
             >
               <Link 
@@ -122,7 +122,7 @@ const Navigation = () => {
             </div>
           ))}
           <div 
-            ref={el => menuItemsRef.current[navItems.length] = el}
+            ref={el => { menuItemsRef.current[navItems.length] = el }}
             className="sidebar-item"
           >
             <button 
