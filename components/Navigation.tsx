@@ -12,7 +12,7 @@ const Navigation = () => {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
   const sidebarRef = useRef(null)
-  const menuItemsRef = useRef([])
+  const menuItemsRef = useRef<(HTMLDivElement | null)[]>([])
 
   const navItems = [
     { name: 'Home', href: '/' },
