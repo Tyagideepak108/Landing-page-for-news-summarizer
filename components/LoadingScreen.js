@@ -23,21 +23,20 @@ export default function LoadingScreen() {
 
     const progressInterval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + 1
+        const newProgress = prev + 2
         
         if (newProgress >= 100) {
           clearInterval(progressInterval)
           if (flipInterval) clearInterval(flipInterval)
-          setTimeout(() => setIsVisible(false), 800)
+          setTimeout(() => setIsVisible(false), 300)
           return 100
         }
         
-        // Speed up flips as progress increases
-        flipSpeed = Math.max(400, 1500 - (newProgress * 10))
+        flipSpeed = Math.max(300, 1000 - (newProgress * 8))
         
         return newProgress
       })
-    }, 80)
+    }, 40)
 
     const startFlipping = () => {
       flipInterval = setInterval(() => {

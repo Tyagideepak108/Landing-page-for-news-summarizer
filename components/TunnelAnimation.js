@@ -92,7 +92,7 @@ export default function TunnelAnimation({ isActive }) {
     if (typeof window !== 'undefined') {
       audioRef.current = new Audio('/models/tunnel_audio.mp3')
       audioRef.current.volume = 0.7
-      audioRef.current.play().catch(err => console.log('Audio play failed:', err))
+      audioRef.current.play().catch(() => {})
     }
 
     const startTime = Date.now()
