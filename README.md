@@ -1,5 +1,7 @@
 # 📰 SnapNews - AI-Powered News Summarization Platform
 
+🚀 **Live Website:** [https://snap-news-summarizer-news.vercel.app/](https://snap-news-summarizer-news.vercel.app/)
+
 A stunning 3D interactive landing page with modern UI/UX, built with Next.js, Three.js, and professional animations.
 
 ## ✨ Key Features
@@ -247,6 +249,6 @@ All rights reserved © 2026 SnapNews
 
 **Made with ❤️ using Next.js, Three.js, GSAP, and React Icons**
 
-🚀 **Live Demo:** [https://snap-news-summarizer-news.vercel.app/]
+🚀 **Live Website:** [https://snap-news-summarizer-news.vercel.app/](https://snap-news-summarizer-news.vercel.app/)
 📧 **Contact:** tyagideepak1007@gmail.com
 
